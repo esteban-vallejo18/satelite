@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Simposio Satélite | Melanoma Metastásico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: linear-gradient(135deg, #f5f7fc 0%, #eef2f8 100%);
+      font-family: 'Inter', system-ui, sans-serif;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .form-wrapper { max-width: 1000px; width: 100%; margin: 0 auto; }
+    .form-card {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+    }
+    /* Cabecera con gradiente y texto destacado */
+    .header-satelite {
+      background: linear-gradient(115deg, #081135 0%, #1a2a5e 100%);
+      padding: 40px 28px 32px;
+      text-align: center;
+      border-bottom: 4px solid #f3218b;
+    }
+    .header-satelite .badge-satelite {
+      background: #f3218b;
+      display: inline-block;
+      padding: 6px 24px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: white;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .header-satelite h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .header-satelite h1 span { color: #f3218b; }
+    .header-satelite .subtitulo {
+      font-size: 1.1rem;
+      color: #ffc0d6;
+      font-weight: 400;
+      margin-top: 8px;
+    }
+    .header-satelite .ponente {
+      font-size: 0.9rem;
+      color: #a8bce6;
+      margin-top: 12px;
+      font-weight: 300;
+    }
+    .header-satelite .ponente strong { color: #ffffff; }
+    /* Resto del formulario (igual que antes) */
+    .card-body { padding: 32px 28px; background: white; }
+    .form-grid { display: flex; flex-wrap: wrap; gap: 20px; }
+    .field { flex: 1 1 calc(50% - 20px); min-width: 200px; margin-bottom: 8px; }
+    label { display: block; font-size: 0.75rem; font-weight: 600; color: #1e293b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.3px; }
+    .required { color: #f3218b; margin-left: 3px; }
+    input, select {
+      width: 100%; padding: 14px 16px; background: #f8fafc;
+      border: 1.5px solid #e2e8f0; border-radius: 12px;
+      font-size: 0.9rem; font-family: 'Inter', sans-serif;
+      transition: all 0.2s ease; color: #0f172a;
+    }
+    input:focus, select:focus {
+      outline: none; border-color: #f3218b;
+      box-shadow: 0 0 0 3px rgba(243, 33, 139, 0.1); background: white;
+    }
+    .checkbox-field {
+      background: #f8fafc; border-radius: 14px; padding: 16px 20px;
+      margin: 16px 0 24px; border: 1px solid #e2e8f0; transition: all 0.2s;
+    }
+    .checkbox-field:hover { border-color: #f3218b; }
+    .checkbox-label {
+      display: flex; align-items: flex-start; gap: 14px;
+      cursor: pointer; font-size: 0.85rem; color: #1e293b; line-height: 1.4;
+    }
+    .checkbox-label input { width: 20px; height: 20px; margin-top: 2px; flex-shrink: 0; accent-color: #f3218b; }
+    .checkbox-label strong { color: #081135; }
+    .btn-submit {
+      background: linear-gradient(95deg, #f3218b, #d41a76);
+      border: none; width: 100%; padding: 16px;
+      font-size: 1rem; font-weight: 600; border-radius: 40px;
+      color: white; cursor: pointer; transition: all 0.2s ease;
+      box-shadow: 0 8px 20px rgba(243, 33, 139, 0.25);
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(243, 33, 139, 0.35); }
+    .message {
+      margin-top: 20px; padding: 12px 16px; border-radius: 12px;
+      text-align: center; font-weight: 500; display: none; font-size: 0.85rem;
+    }
+    .success { background: #e6f7ec; color: #0e5e2e; border-left: 3px solid #27e083; }
+    .error { background: #fff0f0; color: #c41e3a; border-left: 3px solid #f3218b; }
+    .sending { background: #eef2ff; color: #1e3a5f; }
+    @media (max-width: 640px) {
+      body { padding: 16px; }
+      .card-body { padding: 24px 20px; }
+      .field { flex: 1 1 100%; }
+      .header-satelite h1 { font-size: 1.6rem; }
+      .header-satelite .subtitulo { font-size: 0.95rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="form-wrapper">
+  <div class="form-card">
+    
+    <!-- CABECERA ESPECIAL PARA SATELITE -->
+    <div class="header-satelite">
+      <div class="badge-satelite">SIMPOSIO SATÉLITE</div>
+      <h1>Actualización en el manejo de <span>Melanoma Metastásico</span></h1>
+      <div class="subtitulo">(BMS) - Un enfoque práctico</div>
+      <div class="ponente">Ponente: <strong>Dra. Angela Zambrano</strong></div>
+    </div>
+
+    <!-- FORMULARIO -->
+    <div class="card-body">
+      <form id="registroSatelite">
+        <div class="form-grid">
+          <div class="field"><label>NOMBRE COMPLETO <span class="required">*</span></label><input type="text" id="nombre" placeholder="Ej. Ana María López" required></div>
+          <div class="field"><label>CÉDULA <span class="required">*</span></label><input type="text" id="cedula" placeholder="Número de identificación" required></div>
+          <div class="field"><label>PROFESIÓN / ESTUDIANTE <span class="required">*</span></label><select id="profesion" required><option value="">Selecciona</option><option>Profesional</option><option>Estudiante</option><option>Otro</option></select></div>
+          <div class="field"><label>ESPECIALIDAD</label><input type="text" id="especialidad" placeholder="Ej: Oncología, Dermatología"></div>
+          <div class="field"><label>CIUDAD <span class="required">*</span></label><input type="text" id="ciudad" placeholder="Ciudad" required></div>
+          <div class="field"><label>TELÉFONO <span class="required">*</span></label><input type="tel" id="telefono" placeholder="Ej: 3001234567" required></div>
+          <div class="field"><label>CORREO ELECTRÓNICO <span class="required">*</span></label><input type="email" id="correo" placeholder="tucorreo@ejemplo.com" required></div>
+          <div class="field"><label>INSTITUCIÓN</label><input type="text" id="institucion" placeholder="Empresa / Universidad"></div>
+        </div>
+
+        <div class="checkbox-field">
+          <label class="checkbox-label">
+            <input type="checkbox" id="autorizacion" required>
+            <span><strong>Autorizo el tratamiento de mis datos personales</strong> según la política de privacidad. <span class="required">*</span></span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-submit">INSCRIBIRME AHORA →</button>
+        <div id="messageBox" class="message"></div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ⚠️ REEMPLAZA ESTA URL POR LA QUE OBTENGAS DE APPS SCRIPT
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz3jVTo40WYCrNHqnJh6_wwqPKToj6zJ7ofIGa-M7CgyV48NyFkt7y6_PIgxGZ9sX3JmQ/exec';
+  
+  const form = document.getElementById('registroSatelite');
+  const messageBox = document.getElementById('messageBox');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    messageBox.style.display = 'none';
+    messageBox.innerHTML = 'Enviando inscripción...';
+    messageBox.className = 'message sending';
+    messageBox.style.display = 'block';
+
+    const datos = {
+      nombre: document.getElementById('nombre').value,
+      cedula: document.getElementById('cedula').value,
+      profesion: document.getElementById('profesion').value,
+      especialidad: document.getElementById('especialidad').value,
+      ciudad: document.getElementById('ciudad').value,
+      telefono: document.getElementById('telefono').value,
+      correo: document.getElementById('correo').value,
+      institucion: document.getElementById('institucion').value,
+      autorizacion: document.getElementById('autorizacion').checked
+    };
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos)
+      });
+      messageBox.innerHTML = '✅ ¡Inscripción exitosa! Te esperamos en el Simposio Satélite.';
+      messageBox.className = 'message success';
+      form.reset();
+    } catch (error) {
+      messageBox.innerHTML = '❌ Error al enviar. Por favor intenta de nuevo.';
+      messageBox.className = 'message error';
+    }
+    setTimeout(() => { messageBox.style.display = 'none'; }, 5000);
+  });
+</script>
+</body>
+</html>
